@@ -14,14 +14,19 @@ class RoutesTest extends TestCase
     }
 
     /** @test */
-    function it_adds_impersonate_route()
+    public function it_redirects_to_the_next_query_parameters()
+    {
+    }
+
+    /** @test */
+    public function it_adds_impersonate_route()
     {
         $this->assertTrue((bool) $this->routes->getByName('impersonate'));
         $this->assertTrue((bool) $this->routes->getByAction('Lab404\Impersonate\Controllers\ImpersonateController@take'));
     }
 
     /** @test */
-    function it_adds_leave_route()
+    public function it_adds_leave_route()
     {
         $this->assertTrue((bool) $this->routes->getByName('impersonate.leave'));
         $this->assertTrue((bool) $this->routes->getByAction('Lab404\Impersonate\Controllers\ImpersonateController@leave'));

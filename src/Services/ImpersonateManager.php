@@ -69,7 +69,6 @@ class ImpersonateManager
 
             $this->app['auth']->quietLogout();
             $this->app['auth']->quietLogin($to);
-
         } catch (\Exception $e) {
             unset($e);
             return false;
@@ -93,7 +92,6 @@ class ImpersonateManager
             $this->app['auth']->quietLogin($impersonator);
             
             $this->clear();
-
         } catch (\Exception $e) {
             unset($e);
             return false;
@@ -126,7 +124,7 @@ class ImpersonateManager
     public function getTakeRedirectTo()
     {
         try {
-            $uri = route(config('laravel-impersonate.take_redirect_to'));
+            $uri = request()->next ?? route(config('laravel-impersonate.take_redirect_to'));
         } catch (\InvalidArgumentException $e) {
             $uri = config('laravel-impersonate.take_redirect_to');
         }
@@ -140,7 +138,7 @@ class ImpersonateManager
     public function getLeaveRedirectTo()
     {
         try {
-            $uri = route(config('laravel-impersonate.leave_redirect_to'));
+            $uri = request()->next ?? route(config('laravel-impersonate.leave_redirect_to'));
         } catch (\InvalidArgumentException $e) {
             $uri = config('laravel-impersonate.leave_redirect_to');
         }
